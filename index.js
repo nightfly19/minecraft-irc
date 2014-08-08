@@ -145,3 +145,6 @@ irc_conn.addListener('message'+settings.irc.channel, function(from, message, raw
 irc_conn.on('raw', function(){
   console.log(arguments[0].args.join(" "));
 });
+
+
+game.start();
