@@ -1,0 +1,22 @@
+{
+  "game": {
+    "options": {
+      "server": "./servers/minecraft_server.1.7.10.jar",
+      "world": "./worlds/example"
+    }
+  },
+  "irc":{
+    "server": "example.server",
+    "nick": "minecraft",
+    "ops": ["steve"],
+    "options":{
+      "port": 6697,
+      "secure": true,
+      "floodProtection": true,
+      "floodProtectionDelay": 1000
+    },
+    "prefix": "%",
+    "channel": "#minecraft",
+    "floodDelay": 1000
+  }
+}

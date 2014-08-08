@@ -1,0 +1,21 @@
+{
+  "name": "minecraft",
+  "version": "0.0.0",
+  "description": "",
+  "dependencies": {
+    "irc": "*",
+    "underscore": "*",
+    "minecraft-control": "*"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nightfly19/minecraft-irc.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
