@@ -7,6 +7,14 @@ var irc_conn;
 var firstJoined = true;
 var game = new Game(settings.game.options);
 
+process.on( 'SIGINT', function() {
+  console.log( "\nGracefully shutting down from SIGINT (Ctrl-C)" );
+  if(game.running){
+    game.stop();
+    irc_conn.disconnect("Quiting");
+  }
+})
+
 game.on('start', function(){
   irc_conn.say(settings.irc.channel, irc.colors.wrap("light_green", "Server has running"))
 });
@@ -44,6 +52,13 @@ game.on('earnedAchievement', function(player, achievement){
 });
 
 irc_conn = new irc.Client(settings.irc.server, settings.irc.nick, settings.irc.options);
+
+irc_conn.on('netError', function(error){
+  console.log(error);
+  if(error.code == 'ENOTFOUND'){
+    process.exit(1);
+  }
+});
 
 irc_conn.on('registered', function(){
   console.log("Registered!!!!");
