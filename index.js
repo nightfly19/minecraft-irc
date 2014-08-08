@@ -11,8 +11,8 @@ process.on( 'SIGINT', function() {
   console.log( "\nGracefully shutting down from SIGINT (Ctrl-C)" );
   if(game.running){
     game.stop();
-    irc_conn.disconnect("Quiting");
   }
+  irc_conn.disconnect("Quiting");
 })
 
 game.on('start', function(){
@@ -79,6 +79,7 @@ var commands = {
       irc_conn.say(raw.args[0], "  status  - is the server currently up");
       irc_conn.say(raw.args[0], "  start   - start the server");
       irc_conn.say(raw.args[0], "  stop    - stop the server");
+      irc_conn.say(raw.args[0], "  quit    - stop the server and quit irc");
       irc_conn.say(raw.args[0], "  command - send the server a command");
       //irc_conn.say(raw.args[0], "  players - How many players current on the server");
     }
@@ -107,6 +108,17 @@ var commands = {
     }
     else{
       irc_conn.say(raw.args[0], from + " you are not permitted to stop the server");
+    }
+  },
+  quit: function(from, message, raw){
+    if(_.indexOf(settings.irc.ops, from) != -1){
+      if(game.running){
+        game.stop();
+      }
+      irc_conn.disconnect();
+    }
+    else{
+      irc_conn.say(raw.args[0], from + " you are not permitted to quit the bot");
     }
   },
   command: function(from, message, raw){
