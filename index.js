@@ -16,7 +16,7 @@ process.on( 'SIGINT', function() {
 })
 
 game.on('start', function(){
-  irc_conn.say(settings.irc.channel, irc.colors.wrap("light_green", "Server has running"))
+  irc_conn.say(settings.irc.channel, irc.colors.wrap("light_green", "Server has started"))
 });
 
 game.on('stop', function(){
